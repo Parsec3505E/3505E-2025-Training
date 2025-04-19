@@ -1,7 +1,7 @@
 #include "main.h"
 #include "drivetrain.hpp"
 
-DriveTrain drivetrain({1, 2, 3}, {1, 2, 3});
+DriveTrain drivetrain({-20, 19, -10}, {2, -4, 5}, 1);
 
 /**
  * A callback function for LLEMU's center button.
@@ -82,7 +82,9 @@ void opcontrol() {
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
 
 	// Creates the while loop for the updateDriveTrain function
-	while true{
+	while (true) {
 		drivetrain.updateDriveTrain(master);
+		// Creates a delay for 20 milliseconds
+		pros::delay(20);
 	}
 }
