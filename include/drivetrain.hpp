@@ -1,8 +1,8 @@
-#include api.h
+#include "api.h"
 class Drivetrain{
-    pros::MotorGroup* leftSide;
-    pros::MotorGroup* rightSide;
-    std::unique-ptc<pros::MotorGroup> leftSide;
+    std::unique_ptr<pros::MotorGroup> leftSide;
+    std::unique_ptr<pros::MotorGroup> rightSide;
+
     public:
         Drivetrain(std::vector<std::int8_t> leftMotorPorts, std::vector<std::int8_t> rightMotorPorts);
         void updateDrivetrain(pros::Controller &master);

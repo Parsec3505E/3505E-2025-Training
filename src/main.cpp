@@ -1,7 +1,7 @@
 #include "main.h"
 #include "drivetrain.hpp"
 
-Drivetrain drivetrain({1,2,3},{4,5,6});
+Drivetrain drivetrain({-20, 19, -10}, {2, -4, 5});
 /**
  * A callback function for LLEMU's center button.
  *
@@ -77,9 +77,8 @@ void autonomous() {}
  */
 void opcontrol() {
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
-	drivetrain.rightSide->set_brake_mode_all(pros::E_MOTOR_BRAKE_HOLD)
-	drivetrain.leftSide->set_brake_mode_all(pros::E_MOTOR_BRAKE_HOLD)
 	while (true){
-		drivetrain.updateDrivetrain(master)
+		drivetrain.updateDrivetrain(master);
+		pros::delay(20);
 	}
 }
