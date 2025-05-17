@@ -1,7 +1,7 @@
 #include "main.h"
 #include "drivetrain.hpp"
 
-DriveTrain drivetrain({-20, 19, -10}, {2, -4, 5}, 1);
+DriveTrain drivetrain({-20, 19, -10}, {2, -4, 5}, 13);
 
 /**
  * A callback function for LLEMU's center button.
@@ -78,12 +78,19 @@ void autonomous() {}
  */
 void opcontrol() {
 	
+	// Resets the gyro heading to zero (only goes from 0 to 360)
+	drivetrain.gyro->set_heading(20);
+
 	// Creates the controller
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
+
+	// 250 for maximum speed and 30 for minimum speed
+	drivetrain.moveStraight(250, 0, 50, -5, 2, 2, 30, 3.25);
 
 	// Creates the while loop for the updateDriveTrain function
 	while (true) {
 		drivetrain.updateDriveTrain(master);
+
 		// Creates a delay for 20 milliseconds
 		pros::delay(20);
 	}
